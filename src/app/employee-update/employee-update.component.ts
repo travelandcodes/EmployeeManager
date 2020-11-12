@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-employee-update',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    console.log(this.route.snapshot.paramMap.get('id'));
+  }
 
   ngOnInit(): void {
   }

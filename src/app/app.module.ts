@@ -36,4 +36,12 @@ import { EmployeeUpdateComponent } from './employee-update/employee-update.compo
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+export interface Employee {
+  id: number;
+  name: string;
+  designation: string;
+  salary: number;
+  doj: Date;
+  skills: string[];
+}

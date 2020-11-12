@@ -4,7 +4,24 @@
 .body-container {
   display: flex;
   justify-content: space-between;
+  margin: 25px;
 }
 .body-container p {
   margin: 10px 0px;
+}
+.employee-wrapper {
+  width: 100%;
+}
+.employee-wrapper th {
+  text-align: left;
+}
+.button-wrapper {
+  width: 250px;
+}
+.button-wrapper button {
+  margin-right: 10px;
+}
+.body-header {
+  font-weight: 500;
+  font-size: 20px;
 }

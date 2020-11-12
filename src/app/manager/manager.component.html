@@ -2,8 +2,26 @@
   <h2>Welcome Admin</h2>
   <mat-card>
     <div class="body-container">
-      <p>Employees List</p>
+      <p class="body-header">Employees List</p>
       <button mat-raised-button color="primary">Add new Employee</button>
     </div>
+    <table class="employee-wrapper">
+      <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let employee of emplyeesList; let i = index ">
+        <td>{{i + 1}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.designation}}</td>
+        <td class="button-wrapper">
+          <button mat-raised-button (click)="viewButtonClicked(employee.id)">View</button>
+          <button mat-raised-button (click)="editButtonClicked(employee.id)" color="primary">Edit</button>
+          <button mat-raised-button (click)="deleteButtonClicked(employee.id)" color="warn">Delete</button>
+        </td>
+      </tr>
+    </table>
   </mat-card>
 </div>
