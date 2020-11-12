@@ -1,0 +1,12 @@
+.form {
+  margin: 100px auto 0px auto;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 0 5px 20px 0 #9c3d3d;
+}
+.submit-button {
+  align-self: flex-end;
+}

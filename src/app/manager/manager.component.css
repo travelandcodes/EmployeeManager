@@ -1,0 +1,10 @@
+.wrapper {
+  padding: 20px;
+}
+.body-container {
+  display: flex;
+  justify-content: space-between;
+}
+.body-container p {
+  margin: 10px 0px;
+}
