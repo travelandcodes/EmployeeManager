@@ -1,1 +1,16 @@
-<p>employee works!</p>
+<mat-card>
+  <mat-card-title>Welcome Employee</mat-card-title>
+  <mat-card>
+    <div class="head-wrapper">
+      <mat-card-title>Employee Details</mat-card-title>
+      <button mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon>edit</mat-icon></button>
+    </div>
+    <div class="details-wrapper">
+      <p>Name : {{employee.name}}</p>
+      <p>Designation : {{employee.designation}}</p>
+      <p>Salary : {{employee.salary}}</p>
+      <p>Date of joining : {{employee.doj  |  date:'dd/MM/yyyy'}}</p>
+      <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}}  </span></p>
+    </div>
+  </mat-card>
+</mat-card>

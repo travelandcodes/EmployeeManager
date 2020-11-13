@@ -1,0 +1,7 @@
+.head-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.details-wrapper {
+  padding: 20px;
+}

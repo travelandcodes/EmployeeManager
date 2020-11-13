@@ -1,0 +1,15 @@
+.splitter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin: 20px;
+  max-width: 500px;
+}
+.button-wrapper {
+  display: flex;
+  margin: 20px;
+  justify-content: flex-end;
+}

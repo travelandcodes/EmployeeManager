@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h2>Welcome Admin</h2>
+  <mat-card-title>Welcome Admin</mat-card-title>
   <mat-card>
     <div class="body-container">
       <p class="body-header">Employees List</p>
@@ -10,12 +10,14 @@
         <th>S.no</th>
         <th>Name</th>
         <th>Designation</th>
+        <th>Date of Joining</th>
         <th>Actions</th>
       </tr>
       <tr *ngFor="let employee of emplyeesList; let i = index ">
         <td>{{i + 1}}</td>
         <td>{{employee.name}}</td>
         <td>{{employee.designation}}</td>
+        <td>{{employee.doj |  date:'MM/dd/yyyy'}}</td>
         <td class="button-wrapper">
           <button mat-raised-button (click)="viewButtonClicked(employee.id)">View</button>
           <button mat-raised-button (click)="editButtonClicked(employee.id)" color="primary">Edit</button>

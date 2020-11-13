@@ -13,6 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { EmployeeUpdateComponent } from './employee-update/employee-update.compo
     LoginComponent,
     EmployeeComponent,
     ManagerComponent,
-    EmployeeUpdateComponent
+    EmployeeUpdateComponent,
+    AddEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { EmployeeUpdateComponent } from './employee-update/employee-update.compo
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

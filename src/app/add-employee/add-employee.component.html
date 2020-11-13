@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>Add Employee</mat-card-title>
+  <form [formGroup]="formData" (submit)="onSubmit()">
+    <div class="splitter">
+      <mat-form-field>
+        <input formControlName="name" placeholder="Enter Name" matInput>
+        <mat-error>Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="designation" placeholder="Enter Designation" matInput>
+        <mat-error>Designation is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="splitter">
+      <mat-form-field>
+        <input formControlName="salary" placeholder="Enter Salary" matInput>
+        <mat-error>Salary is Required and should be a number</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="doj" type="date" placeholder="Select Date of Joining" matInput>
+        <mat-error>Date of Joining is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div >
+      <mat-form-field>
+        <input formControlName="skills" placeholder="Enter Skills" matInput>
+        <mat-error>At least one skill is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="button-wrapper">
+      <button mat-raised-button type="submit" color="primary">Add Employee</button>
+    </div>
+  </form>
+</mat-card>
