@@ -15,6 +15,9 @@ import {MatCardModule} from '@angular/material/card';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import {MatIconModule} from '@angular/material/icon';
+import {LoginService} from './services/login-service';
+import {HttpClientModule} from '@angular/common/http';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatChipsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
