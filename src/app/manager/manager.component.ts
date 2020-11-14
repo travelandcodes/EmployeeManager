@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Employee} from '../app.module';
 import {Options} from 'ng5-slider';
 import {FormControl} from '@angular/forms';
+import {ManagerService} from '../services/manager-service';
 
 @Component({
   selector: 'app-manager',
@@ -11,33 +12,8 @@ import {FormControl} from '@angular/forms';
 export class ManagerComponent implements OnInit {
   autoComplete = new FormControl();
   autoCompleteArray: Employee[] = [];
-  employeesList: Employee[] = [
-    {
-      name: 'Prateek Gango',
-      designation: 'CEO of Xoriant',
-      id: 1,
-      salary: 6000000,
-      doj: new Date(),
-      skills: ['Node' , 'Angular', 'React']
-    },
-    {
-      name: 'baba ramdev',
-      designation: 'CEO of Patanjali',
-      id: 2,
-      salary: 6000000,
-      doj: new Date(),
-      skills: ['Node' , 'Angular', 'React']
-    },
-    {
-      name: 'Mark Zukerberg',
-      designation: 'CEO of Facebook',
-      id: 3,
-      salary: 6000000,
-      doj: new Date(),
-      skills: ['Node' , 'Angular', 'React']
-    }
-  ];
-  constructor() { }
+  employeesList: Employee[] = [];
+  constructor(private managerService: ManagerService) { }
 
   minValue = 400000;
   maxValue = 1000000;
@@ -53,6 +29,9 @@ export class ManagerComponent implements OnInit {
   ngOnInit(): void {
     this.autoComplete.valueChanges.subscribe((value) => {
       this.autoCompleteArray = this._filter(value);
+    });
+    this.managerService.getAllEmployees().subscribe((res) => {
+      this.employeesList = res.users;
     });
   }
   viewButtonClicked(id: number): void {

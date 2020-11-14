@@ -23,6 +23,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {ManagerGuard} from './guards/ManagerGuard';
 import {EmployeeGuard} from './guards/EmployeeGuard';
 import {UpdateEmployeeGuard} from './guards/UpdateEmployeeGuard';
+import {ManagerService} from './services/manager-service';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,10 @@ import {UpdateEmployeeGuard} from './guards/UpdateEmployeeGuard';
     HttpClientModule,
     MatChipsModule,
     Ng5SliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatRadioModule
   ],
-  providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard],
+  providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard , ManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

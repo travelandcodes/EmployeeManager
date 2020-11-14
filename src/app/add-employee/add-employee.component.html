@@ -11,13 +11,24 @@
         <mat-error>Designation is required</mat-error>
       </mat-form-field>
     </div>
+
+    <div class="splitter">
+      <mat-form-field>
+        <input formControlName="email" placeholder="Enter Email" matInput>
+        <mat-error>Email is required and should be a valid email</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="password" type="password" placeholder="Enter Default Password" matInput>
+      </mat-form-field>
+    </div>
+
     <div class="splitter">
       <mat-form-field>
         <input formControlName="salary" placeholder="Enter Salary" matInput>
         <mat-error>Salary is Required and should be a number</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="doj" type="date" placeholder="Select Date of Joining" matInput>
+        <input formControlName="DOJ" type="date" placeholder="Select Date of Joining" matInput>
         <mat-error>Date of Joining is required</mat-error>
       </mat-form-field>
     </div>
@@ -35,8 +46,15 @@
         <mat-error>At least one skill is required</mat-error>
       </mat-form-field>
     </div>
+    <div class="radio-wrapper">
+      <label>Is Employee Manager</label>
+      <mat-radio-group formControlName="isManager">
+        <mat-radio-button value='true'>True</mat-radio-button>
+        <mat-radio-button value='false'>False</mat-radio-button>
+      </mat-radio-group>
+    </div>
     <div class="button-wrapper">
-      <button mat-raised-button type="submit" color="primary">Add Employee</button>
+      <button [disabled]="formData.invalid" mat-raised-button type="submit" color="primary">Add Employee</button>
     </div>
   </form>
 </mat-card>

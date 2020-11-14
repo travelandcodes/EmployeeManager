@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {isNumeric} from 'rxjs/internal-compatibility';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import {ManagerService} from '../services/manager-service';
 
 @Component({
   selector: 'app-add-employee',
@@ -13,21 +14,38 @@ export class AddEmployeeComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   formData = new FormGroup({
     name: new FormControl(null , [Validators.required]),
+    email: new FormControl(null , [Validators.email, Validators.required]),
+    password: new FormControl(null, [Validators.required]),
+    isManager: new FormControl(null , [Validators.required]),
     designation: new FormControl(null , [Validators.required]),
     salary: new FormControl(null , [Validators.required , Validators.pattern(/^\d+$/)]),
-    doj: new FormControl(null , [Validators.required]),
+    DOJ: new FormControl(null , [Validators.required]),
   });
   skills: string[] = ['Angular' , 'Node'];
-  constructor() { }
+  constructor(private managerService: ManagerService) {}
 
   ngOnInit(): void {
   }
   onSubmit(): void {
-    const data = {
-      ...this.formData.value,
-      skills: this.skills
+    let data: AddEmployee;
+    if (this.formData.value.isManager === 'true') {
+      data = {
+        ...this.formData.value,
+        isManager: true
+      };
+    }else {
+      data = {
+        ...this.formData.value,
+        isManager: false
+      };
     }
-    console.log(data);
+    data = {
+      ...data,
+      skills: this.skills
+    };
+    this.managerService.addUser(data).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -49,4 +67,14 @@ export class AddEmployeeComponent implements OnInit {
     }
   }
 
+}
+export interface AddEmployee {
+  name: string;
+  email: string;
+  isManager: boolean;
+  DOJ: Date;
+  salary: string;
+  skills: string[];
+  designation: string;
+  password: string;
 }
