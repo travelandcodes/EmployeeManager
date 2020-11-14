@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee} from '../app.module';
+import {Options} from 'ng5-slider';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-manager',
@@ -7,7 +9,9 @@ import {Employee} from '../app.module';
   styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-  emplyeesList: Employee[] = [
+  autoComplete = new FormControl();
+  autoCompleteArray: Employee[] = [];
+  employeesList: Employee[] = [
     {
       name: 'Prateek Gango',
       designation: 'CEO of Xoriant',
@@ -35,7 +39,22 @@ export class ManagerComponent implements OnInit {
   ];
   constructor() { }
 
-  ngOnInit(): void {}
+  minValue = 400000;
+  maxValue = 1000000;
+  options: Options = {
+    floor: 0,
+    ceil: 5000000,
+    step: 10000
+  };
+  filter(): void {
+    console.log(this.minValue , this.maxValue);
+  }
+
+  ngOnInit(): void {
+    this.autoComplete.valueChanges.subscribe((value) => {
+      this.autoCompleteArray = this._filter(value);
+    });
+  }
   viewButtonClicked(id: number): void {
     console.log('view' + id);
   }
@@ -44,6 +63,10 @@ export class ManagerComponent implements OnInit {
   }
   deleteButtonClicked(id: number): void {
     console.log('delete' + id);
+  }
+  private _filter(value: string): Employee[] {
+    const filterValue = value.toLowerCase();
+    return this.employeesList.filter(employee => employee.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

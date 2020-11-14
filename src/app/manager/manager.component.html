@@ -3,7 +3,23 @@
   <mat-card>
     <div class="body-container">
       <p class="body-header">Employees List</p>
-      <button mat-raised-button color="primary">Add new Employee</button>
+      <button routerLink="add-employee" mat-raised-button color="primary">Add new Employee</button>
+    </div>
+    <div class="filter-wrapper">
+      <mat-form-field class="filter-component">
+        <input type="text"
+               placeholder="Search by name"
+               aria-label="Number"
+               matInput
+               [formControl]="autoComplete"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let employee of autoCompleteArray" [value]="employee.name">
+            {{employee.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <ng5-slider class="filter-component" (valueChange)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
     </div>
     <table class="employee-wrapper">
       <tr>
@@ -13,7 +29,7 @@
         <th>Date of Joining</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let employee of emplyeesList; let i = index ">
+      <tr *ngFor="let employee of employeesList; let i = index ">
         <td>{{i + 1}}</td>
         <td>{{employee.name}}</td>
         <td>{{employee.designation}}</td>

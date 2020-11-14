@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../services/login-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,21 @@ import {LoginService} from '../services/login-service';
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl(null , [Validators.email , Validators.required]),
-    password: new FormControl(null , [Validators.minLength(6) , Validators.required])
+    password: new FormControl(null , [Validators.minLength(4) , Validators.required])
   });
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    this.loginService.login('travelandcodes@gmail.com', 'test').subscribe((val) => {
-      console.log(val);
+    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((val) => {
+      localStorage.setItem('Employee_Manager', JSON.stringify(val.user));
+      if (val.user.isManager === true) {
+        this.router.navigateByUrl('/manager');
+      }else {
+        this.router.navigateByUrl('/employee');
+      }
     });
   }
 

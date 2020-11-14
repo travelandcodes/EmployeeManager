@@ -5,14 +5,17 @@ import {EmployeeComponent} from './employee/employee.component';
 import {ManagerComponent} from './manager/manager.component';
 import {EmployeeUpdateComponent} from './employee-update/employee-update.component';
 import {AddEmployeeComponent} from './add-employee/add-employee.component';
+import {ManagerGuard} from './guards/ManagerGuard';
+import {EmployeeGuard} from './guards/EmployeeGuard';
+import {UpdateEmployeeGuard} from './guards/UpdateEmployeeGuard';
 
 const routes: Routes = [
   {path: '' , pathMatch: 'full' , redirectTo: '/login'},
   {path: 'login' , component: LoginComponent},
-  {path: 'employee' , component: EmployeeComponent},
-  {path: 'manager' , component: ManagerComponent},
-  {path: 'manager/add-employee' , component: AddEmployeeComponent},
-  {path: 'update-employee/:id' , component: EmployeeUpdateComponent}
+  {path: 'employee' , component: EmployeeComponent , canActivate: [EmployeeGuard]},
+  {path: 'manager' , component: ManagerComponent , canActivate: [ManagerGuard]},
+  {path: 'manager/add-employee' , component: AddEmployeeComponent , canActivate: [ManagerGuard]},
+  {path: 'update-employee/:id' , component: EmployeeUpdateComponent , canActivate: [UpdateEmployeeGuard]}
 ];
 
 @NgModule({

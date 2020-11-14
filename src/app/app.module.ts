@@ -18,6 +18,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {LoginService} from './services/login-service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
+import {Ng5SliderModule} from 'ng5-slider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {ManagerGuard} from './guards/ManagerGuard';
+import {EmployeeGuard} from './guards/EmployeeGuard';
+import {UpdateEmployeeGuard} from './guards/UpdateEmployeeGuard';
 
 @NgModule({
   declarations: [
@@ -40,9 +45,11 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatIconModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    Ng5SliderModule,
+    MatAutocompleteModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
