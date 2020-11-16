@@ -25,6 +25,8 @@ import {EmployeeGuard} from './guards/EmployeeGuard';
 import {UpdateEmployeeGuard} from './guards/UpdateEmployeeGuard';
 import {ManagerService} from './services/manager-service';
 import {MatRadioModule} from '@angular/material/radio';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
+import {EmployeeService} from './services/employee-service';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {MatRadioModule} from '@angular/material/radio';
     ManagerComponent,
     EmployeeUpdateComponent,
     AddEmployeeComponent,
+    ViewEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,15 +55,15 @@ import {MatRadioModule} from '@angular/material/radio';
     MatAutocompleteModule,
     MatRadioModule
   ],
-  providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard , ManagerService],
+  providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard , ManagerService , EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
 export interface Employee {
-  id: number;
+  _id: string;
   name: string;
   designation: string;
   salary: number;
-  doj: Date;
+  DOJ: Date;
   skills: string[];
 }

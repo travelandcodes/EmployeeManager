@@ -3,6 +3,7 @@ import {Employee} from '../app.module';
 import {Options} from 'ng5-slider';
 import {FormControl} from '@angular/forms';
 import {ManagerService} from '../services/manager-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manager',
@@ -11,41 +12,50 @@ import {ManagerService} from '../services/manager-service';
 })
 export class ManagerComponent implements OnInit {
   autoComplete = new FormControl();
-  autoCompleteArray: Employee[] = [];
   employeesList: Employee[] = [];
-  constructor(private managerService: ManagerService) { }
+  constructor(private managerService: ManagerService , private router: Router) { }
 
-  minValue = 400000;
-  maxValue = 1000000;
+  minValue = 0;
+  maxValue = 500000;
   options: Options = {
     floor: 0,
-    ceil: 5000000,
-    step: 10000
+    ceil: 500000,
+    step: 50000
   };
+  keyword = '';
   filter(): void {
-    console.log(this.minValue , this.maxValue);
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+      this.employeesList = res.users;
+    });
   }
 
   ngOnInit(): void {
     this.autoComplete.valueChanges.subscribe((value) => {
-      this.autoCompleteArray = this._filter(value);
+      this.keyword = value;
+      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+        this.employeesList = res.users;
+      });
     });
     this.managerService.getAllEmployees().subscribe((res) => {
       this.employeesList = res.users;
     });
   }
-  viewButtonClicked(id: number): void {
+  viewButtonClicked(id: string): void {
     console.log('view' + id);
+    this.router.navigateByUrl('employee/' + id );
   }
-  editButtonClicked(id: number): void {
+  editButtonClicked(id: string): void {
     console.log('edit' + id);
+    this.router.navigateByUrl('update-employee/' + id);
   }
-  deleteButtonClicked(id: number): void {
+  deleteButtonClicked(id: string): void {
     console.log('delete' + id);
-  }
-  private _filter(value: string): Employee[] {
-    const filterValue = value.toLowerCase();
-    return this.employeesList.filter(employee => employee.name.toLowerCase().indexOf(filterValue) === 0);
+    this.managerService.deleteEmployee(id).subscribe(() => {
+      console.log('User Deleted');
+      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+        this.employeesList = res.users;
+      });
+    });
   }
 
 }

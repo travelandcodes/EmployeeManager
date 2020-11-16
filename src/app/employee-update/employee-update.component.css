@@ -1,0 +1,29 @@
+.form-wrapper {
+  padding: 30px;
+}
+.splitter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin: 20px;
+  max-width: 500px;
+}
+.button-wrapper {
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+}
+.radio-wrapper {
+  margin: 20px;
+}
+.radio-wrapper label {
+  margin-right: 10px;
+  font-weight: normal;
+  font-size: 15px;
+}
+.radio-wrapper mat-radio-button {
+  margin-right: 10px;
+}

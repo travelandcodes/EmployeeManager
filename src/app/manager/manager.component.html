@@ -11,13 +11,7 @@
                placeholder="Search by name"
                aria-label="Number"
                matInput
-               [formControl]="autoComplete"
-               [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let employee of autoCompleteArray" [value]="employee.name">
-            {{employee.name}}
-          </mat-option>
-        </mat-autocomplete>
+               [formControl]="autoComplete" autocomplete="off">
       </mat-form-field>
       <ng5-slider class="filter-component" (valueChange)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
     </div>
@@ -33,11 +27,11 @@
         <td>{{i + 1}}</td>
         <td>{{employee.name}}</td>
         <td>{{employee.designation}}</td>
-        <td>{{employee.doj |  date:'MM/dd/yyyy'}}</td>
+        <td>{{employee.DOJ |  date:'MM/dd/yyyy'}}</td>
         <td class="button-wrapper">
-          <button mat-raised-button (click)="viewButtonClicked(employee.id)">View</button>
-          <button mat-raised-button (click)="editButtonClicked(employee.id)" color="primary">Edit</button>
-          <button mat-raised-button (click)="deleteButtonClicked(employee.id)" color="warn">Delete</button>
+          <button mat-raised-button (click)="viewButtonClicked(employee._id)">View</button>
+          <button mat-raised-button (click)="editButtonClicked(employee._id)" color="primary">Edit</button>
+          <button mat-raised-button (click)="deleteButtonClicked(employee._id)" color="warn">Delete</button>
         </td>
       </tr>
     </table>

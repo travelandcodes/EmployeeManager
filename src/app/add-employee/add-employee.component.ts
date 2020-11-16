@@ -4,6 +4,7 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {ManagerService} from '../services/manager-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -21,8 +22,8 @@ export class AddEmployeeComponent implements OnInit {
     salary: new FormControl(null , [Validators.required , Validators.pattern(/^\d+$/)]),
     DOJ: new FormControl(null , [Validators.required]),
   });
-  skills: string[] = ['Angular' , 'Node'];
-  constructor(private managerService: ManagerService) {}
+  skills: string[] = [];
+  constructor(private managerService: ManagerService , private route: Router) {}
 
   ngOnInit(): void {
   }
@@ -44,7 +45,7 @@ export class AddEmployeeComponent implements OnInit {
       skills: this.skills
     };
     this.managerService.addUser(data).subscribe((res) => {
-      console.log(res);
+      this.route.navigateByUrl('manager');
     });
   }
 
