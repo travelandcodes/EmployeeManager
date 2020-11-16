@@ -1,4 +1,5 @@
 <div class="header">
   <p>Welcome to Employee Manager</p>
+  <button mat-stroked-button color="warn" *ngIf="showLogout" (click)="logout()">Logout</button>
 </div>
 <router-outlet></router-outlet>

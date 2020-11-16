@@ -6,6 +6,7 @@ export class EmployeeGuard {
   constructor(private router: Router) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const user = JSON.parse(localStorage.getItem('Employee_Manager'));
+    console.log(user);
     if (user.isManager === false) {
       return true;
     }else {

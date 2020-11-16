@@ -1,10 +1,15 @@
 .header {
-  text-align: center;
   padding: 20px;
   color: white;
   background: #9c3d3d;
+  display: flex;
 }
 .header p {
   margin: 0px !important;
   font: 30px sans-serif;
+}
+.header button {
+  margin-left: auto;
+  background: white;
+  margin-left: auto;
 }

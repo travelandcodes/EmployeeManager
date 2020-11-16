@@ -6,7 +6,7 @@
       <button mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon>edit</mat-icon></button>
     </div>
     <div class="details-wrapper">
-      <p>Name : {{employee.name}}</p>
+      <p>Name : {{employee['name']}}</p>
       <p>Designation : {{employee.designation}}</p>
       <p>Salary : {{employee.salary}}</p>
       <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
