@@ -8,5 +8,7 @@
     <input formControlName="password" placeholder="Enter Password" matInput type="password">
     <mat-error>Password is required and should be of minimum 6 charcters</mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary" class="submit-button" [disabled]="loginForm.invalid" type="submit">Login</button>
+  <p *ngIf="showLoginError" class="error">Either email or password incorrect</p>
+  <mat-spinner [diameter]="30" [strokeWidth]="4" class="submit-button" *ngIf="showSpinner"></mat-spinner>
+  <button mat-raised-button *ngIf="!showSpinner" color="primary" class="submit-button" [disabled]="loginForm.invalid" type="submit">Login</button>
 </form>

@@ -27,6 +27,7 @@ import {ManagerService} from './services/manager-service';
 import {MatRadioModule} from '@angular/material/radio';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import {EmployeeService} from './services/employee-service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {EmployeeService} from './services/employee-service';
     MatChipsModule,
     Ng5SliderModule,
     MatAutocompleteModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   providers: [LoginService, ManagerGuard , EmployeeGuard , UpdateEmployeeGuard , ManagerService , EmployeeService],
   bootstrap: [AppComponent]
