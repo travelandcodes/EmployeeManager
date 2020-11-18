@@ -24,6 +24,11 @@ export class LoginComponent implements OnInit {
     this.showSpinner = true;
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((val) => {
       this.showSpinner = false;
+      if(val.errorMessage=="Invalid credentials.")
+      {
+        this.showLoginError = true;
+        this.showSpinner = false;
+      }
       localStorage.setItem('Employee_Manager', JSON.stringify(val.user));
       if (val.user.isManager === true) {
         this.router.navigateByUrl('/manager');

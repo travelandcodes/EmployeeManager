@@ -10,7 +10,7 @@
       <p>Designation : {{employee.designation}}</p>
       <p>Salary : {{employee.salary}}</p>
       <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
-      <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}}  </span></p>
+      <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}} -  </span></p>
     </div>
   </mat-card>
 </mat-card>

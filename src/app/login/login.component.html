@@ -1,10 +1,10 @@
 <form [formGroup]="loginForm" class="form" (submit)="onSubmit()">
-  <h1>Login</h1>
-  <mat-form-field>
-    <input formControlName="email" placeholder="Enter Username or Email" matInput type="email">
+  <h1>Sign In</h1>
+  <mat-form-field class="input-placeholder">
+    <input formControlName="email" placeholder="Enter Email" matInput type="email">
     <mat-error>Email is required and it should be a valid email</mat-error>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="input-placeholder">
     <input formControlName="password" placeholder="Enter Password" matInput type="password">
     <mat-error>Password is required and should be of minimum 6 charcters</mat-error>
   </mat-form-field>

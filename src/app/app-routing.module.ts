@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '' , pathMatch: 'full' , redirectTo: '/login'},
   {path: 'login' , component: LoginComponent},
   {path: 'employee' , component: EmployeeComponent , canActivate: [EmployeeGuard]},
-  {path: 'employee/:id' , component: ViewEmployeeComponent , canActivate: [ManagerGuard]},
+  {path: 'employee/:id' , component: ViewEmployeeComponent },
   {path: 'manager' , component: ManagerComponent , canActivate: [ManagerGuard]},
   {path: 'manager/add-employee' , component: AddEmployeeComponent , canActivate: [ManagerGuard]},
   {path: 'update-employee/:id' , component: EmployeeUpdateComponent , canActivate: [UpdateEmployeeGuard]}

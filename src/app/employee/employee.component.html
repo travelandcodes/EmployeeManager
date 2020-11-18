@@ -5,12 +5,47 @@
       <mat-card-title>Employee Details</mat-card-title>
       <button mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon>edit</mat-icon></button>
     </div>
-    <div class="details-wrapper">
-      <p>Name : {{employee['name']}}</p>
+    <div *ngIf="employee" class="details-wrapper">
+      <p>Name : {{employee.name}}</p>
       <p>Designation : {{employee.designation}}</p>
       <p>Salary : {{employee.salary}}</p>
       <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
       <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}}  </span></p>
     </div>
+  </mat-card>
+</mat-card>
+<mat-card>
+  <mat-card-title>Search</mat-card-title>
+<mat-card>
+  <div class="filter-wrapper">
+    <mat-form-field class="filter-component">
+      <input type="text"
+             placeholder="Search by name"
+             aria-label="Number"
+             matInput
+             [formControl]="autoComplete" autocomplete="off">
+    </mat-form-field>
+    <ng5-slider class="filter-component" (valueChange)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+  </div>
+  <table class="employee-wrapper">
+    <tr>
+      <th>S.no</th>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Date of Joining</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let employee of employeesList; let i = index ">
+      <td>{{i + 1}}</td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.designation}}</td>
+      <td>{{employee.DOJ |  date:'MM/dd/yyyy'}}</td>
+      <td class="button-wrapper">
+        <button mat-raised-button (click)="viewButtonClicked(employee._id)">View</button>
+        <button *ngIf="user.isManager" mat-raised-button (click)="editButtonClicked(employee._id)" color="primary">Edit</button>
+        <button *ngIf="user.isManager" mat-raised-button (click)="deleteButtonClicked(employee._id)" color="warn">Delete</button>
+      </td>
+    </tr>
+  </table>
   </mat-card>
 </mat-card>

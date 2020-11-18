@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "EmployeeManager"
+  "defaultProject": "EmployeeManager",
+  "cli": {
+    "analytics": false
+  }
 }
