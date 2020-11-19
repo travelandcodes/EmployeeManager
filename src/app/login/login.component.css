@@ -2,33 +2,33 @@
   margin: 100px auto 0px auto;
   max-width: 600px;
   width: 100%;
-  color:white;
-  background-color: #0b1149;
+  color:#16104b;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 2px 5px 20px 0 #16104b;
+  box-shadow: 2px 2px 20px 0 #16104b;
 }
-::ng-deep .mat-focused .mat-form-field-label {
+.mat-focused .mat-form-field-label {
   /*change color of label*/
   color:white!important;
  }
- ::ng-deep .mat-input-element::placeholder {
+ .mat-input-element::placeholder {
   color: white;
  
 }
 
-::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+.mat-form-field-appearance-legacy .mat-form-field-label {
   color: white;
   font-weight: 500;
 }
- ::ng-deep.mat-form-field-underline {
+.mat-form-field-underline {
   /*change color of underline*/
   background-color: white!important;
 } 
 
-::ng-deep.mat-form-field-ripple {
+.mat-form-field-ripple {
  /*change color of underline when focused*/
  background-color:white !important;;
 }

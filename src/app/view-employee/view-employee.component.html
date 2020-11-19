@@ -1,16 +1,25 @@
-<mat-card>
-  <mat-card-title>Welcome Employee</mat-card-title>
-  <mat-card>
-    <div class="head-wrapper">
-      <mat-card-title>Employee Details</mat-card-title>
-      <button mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon>edit</mat-icon></button>
-    </div>
-    <div class="details-wrapper">
-      <p>Name : {{employee.name}}</p>
-      <p>Designation : {{employee.designation}}</p>
-      <p>Salary : {{employee.salary}}</p>
-      <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
-      <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}} -  </span></p>
-    </div>
-  </mat-card>
-</mat-card>
+<div class="container">
+  <div class="wrapper">
+    <a href="#">
+      <img src="../../assets/profile.svg" alt="">
+    </a>
+    <div class="title">
+      Name: 
+{{employee.name}}</div>
+
+<br>
+<hr>
+<br>
+<div class="place">
+  {{employee.designation}}</div>
+</div>
+<br>
+
+<div class="content">
+   - &nbsp; <p *ngFor="let skill of employee.skills">
+{{skill}} &nbsp; - &nbsp;</p>
+</div>
+
+<div class="content">
+ Salary: &nbsp;{{employee.salary}}
+</div>
