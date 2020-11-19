@@ -11,7 +11,7 @@ export class ManagerService {
   baseurl = environment.baseurl;
   constructor(private http: HttpClient) {}
   getAllEmployees(): any {
-    return this.http.get(this.baseurl + 'findMany');
+    return this.http.post(this.baseurl + 'findMany',{});
   }
   addUser(data: AddEmployee): any {
     return this.http.post(this.baseurl + 'add-user' , data);
@@ -20,12 +20,9 @@ export class ManagerService {
     return this.http.post(this.baseurl + 'delete-user' , {userId: id});
   }
   getFilteredEmployees(min: number , max: number , keyWord: string): any {
-    return this.http.get(this.baseurl + 'findMany' ,
-      {params: {
-                       minSalary: min.toString(),
-                       maxSalary: max.toString(),
-                       keyword: keyWord
-                      }});
+    return this.http.post(this.baseurl + 'findMany' ,
+       { minSalary: min.toString(),maxSalary: max.toString(),keyword: keyWord
+                      });
   }
 }
 
