@@ -13,7 +13,7 @@ export class AppComponent {
   showLogout: boolean;
   user:Employee;
   constructor(private router: Router) {
-    this.user = JSON.parse(localStorage.getItem('Employee_Manager'));
+    
     this.router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.url = route.urlAfterRedirects;
@@ -24,6 +24,10 @@ export class AppComponent {
         }
       }
     });
+  }
+  ngOnInit():void
+  {
+    this.user = JSON.parse(localStorage.getItem('Employee_Manager'));
   }
   viewUser():void
   {

@@ -4,11 +4,14 @@
     <div *ngIf="employee" class="details-wrapper">
       <p>Name :  {{employee.name}}</p>
       <p>Designation : {{employee.designation}}</p>
-      <p>Salary : {{employee.salary}}</p>
+      <p>Salary : ₹{{employee.salary}}</p>
       <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
       <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}} -  </span></p>
     </div>
-    <button mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon style="line-height: 21px;margin-left: 10px;">edit</mat-icon></button>
+    <div class="img-wrapper">
+      <img src="../../assets/profile.svg" alt="">
+    </div>
+    <button style="margin: 0px 20px;" mat-raised-button color="primary" (click)="editEmployee()">Edit<mat-icon style="line-height: 21px;margin-left: 10px;">edit</mat-icon></button>
   </mat-card>
   <mat-card class="inner-flexdisp">
     <div class="filter-wrapper">

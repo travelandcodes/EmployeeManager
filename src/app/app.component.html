@@ -1,7 +1,7 @@
 <div class="header">
 <p>E | M | S</p>
   <img src="../assets//profile.svg" *ngIf="showLogout" alt="" (click)="viewUser()"/>
-  <h4 *ngIf="user">{{user.name}}</h4>
+  <h4 *ngIf="showLogout">{{user.name}}</h4>
   <button mat-stroked-button color="warn" *ngIf="showLogout" (click)="logout()">Logout</button>
 </div>
 <router-outlet></router-outlet>
