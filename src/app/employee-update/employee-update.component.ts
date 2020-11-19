@@ -5,7 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {AddEmployee} from '../add-employee/add-employee.component';
 import {EmployeeService} from '../services/employee-service';
-import {Employee} from '../app.module';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-update',
@@ -14,7 +14,7 @@ import {Employee} from '../app.module';
 })
 export class EmployeeUpdateComponent implements OnInit {
   id: string;
-  constructor(private activatedRoute: ActivatedRoute , private employeeService: EmployeeService , private route: Router) {
+  constructor(public snackBar: MatSnackBar,private activatedRoute: ActivatedRoute , private employeeService: EmployeeService , private route: Router) {
    this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
   skills: string[] = [];
@@ -60,14 +60,21 @@ export class EmployeeUpdateComponent implements OnInit {
       skills: this.skills
     };
     this.employeeService.updateEmployeeById(this.id, data).subscribe((res) => {
+
       if (this.isUserManager) {
         this.route.navigateByUrl('manager');
+        this.openSnackBar('Manager Updated', 'close')
       }else {
         this.route.navigateByUrl('employee');
+        this.openSnackBar('Employee Updated', 'close')
       }
     });
   }
-
+openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+         duration: 2000,
+      });
+   } 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;

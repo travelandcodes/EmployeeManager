@@ -28,6 +28,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import {EmployeeService} from './services/employee-service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatIconModule,
     HttpClientModule,
     MatChipsModule,
+    MatSnackBarModule,
     Ng5SliderModule,
     MatAutocompleteModule,
     MatRadioModule,

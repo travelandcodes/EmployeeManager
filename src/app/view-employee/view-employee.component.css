@@ -33,7 +33,7 @@
   background: linear-gradient(45deg, #0b1149, #3747dd);
 }
 .container:hover{
-  height: 500px;
+  height: 470px;
   width: 350px;
   border-radius: 5px;
   box-shadow: 0px 1px 35px 0px rgba(0,0,0,0.3);
@@ -63,18 +63,16 @@
   font-size: 30px;
   font-weight: 500;
   padding: 10px;
+  margin-bottom: 10px;
   line-height: 10px;
 }
 .wrapper .place{
   color: #fff;
   text-align: center;
-  display: flex;
   font-size: 15px;
   font-weight: 500;
-  width: 50%;
-  line-height: 15px;
- margin-left: 30px;
- margin-right: 20px;
+  line-height: 0px;
+
 }
 .content{
   color: #fff;
@@ -122,4 +120,9 @@
 }
 .container .icons li a:hover{
   transform: scale(0.9);
+}
+
+.mat-card-title
+{
+  text-align: center;
 }

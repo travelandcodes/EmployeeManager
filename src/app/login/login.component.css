@@ -2,7 +2,7 @@
   margin: 100px auto 0px auto;
   max-width: 600px;
   width: 100%;
-  color:#16104b;
+  /* color:#16104b; */
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
@@ -10,13 +10,9 @@
   border-radius: 10px;
   box-shadow: 2px 2px 20px 0 #16104b;
 }
-.mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color:white!important;
- }
- .mat-input-element::placeholder {
-  color: white;
- 
+label
+{
+  color: azure;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {

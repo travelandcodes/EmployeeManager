@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
+import { Employee } from './app.module';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,9 @@ export class AppComponent {
   url: string;
   title = 'EmployeeManager';
   showLogout: boolean;
+  user:Employee;
   constructor(private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('Employee_Manager'));
     this.router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.url = route.urlAfterRedirects;
@@ -22,8 +25,14 @@ export class AppComponent {
       }
     });
   }
+  viewUser():void
+  {
+   
+    window.location.assign(`http://localhost:4200/employee/${this.user._id}`);
+  }
   logout(): void {
     localStorage.clear();
     this.router.navigateByUrl('login');
   }
+
 }
