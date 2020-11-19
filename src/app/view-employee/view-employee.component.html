@@ -4,14 +4,21 @@
       <img src="../../assets/profile.svg" alt="">
     </a>
     <div class="title">
-      Name: 
 {{employee.name}}</div>
 
 <br>
 <hr>
+<hr>
 <br>
-<div class="place">
-  {{employee.designation}}</div>
+<div class="data-wrapper">
+<div class="place" >
+{{employee.designation}}</div>
+<hr>
+<hr>
+  <div class="place" id="salary">
+   &nbsp;{{employee.salary}}
+   </div>
+  </div>
 </div>
 <br>
 
@@ -20,6 +27,3 @@
 {{skill}} &nbsp; - &nbsp;</p>
 </div>
 
-<div class="content">
- Salary: &nbsp;{{employee.salary}}
-</div>
