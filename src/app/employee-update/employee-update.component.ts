@@ -29,9 +29,10 @@ export class EmployeeUpdateComponent implements OnInit {
   initalState: AddEmployee;
   isUserManager: boolean;
   ngOnInit(): void {
-    this.isUserManager = JSON.parse(localStorage.getItem('Employee_Manager')).isManager;
+   
     this.employeeService.getEmployeeById(this.id).subscribe((res) => {
       this.initalState = res.user;
+      this.isUserManager = res.user.isManager;
       this.formData.setValue({
         name: this.initalState.name,
         email: this.initalState.email,
@@ -61,9 +62,18 @@ export class EmployeeUpdateComponent implements OnInit {
     };
     this.employeeService.updateEmployeeById(this.id, data).subscribe((res) => {
 
-      if (this.isUserManager) {
+      if (JSON.parse(localStorage.getItem('Employee_Manager')).isManager) {
+
         this.route.navigateByUrl('manager');
-        this.openSnackBar('Manager Updated', 'close')
+        if(this.isUserManager)
+        {
+          this.openSnackBar('Manager Updated', 'close')
+        }
+        else
+        {
+          this.openSnackBar('Employee Updated', 'close')
+        }
+       
       }else {
         this.route.navigateByUrl('employee');
         this.openSnackBar('Employee Updated', 'close')

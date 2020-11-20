@@ -5,6 +5,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {ManagerService} from '../services/manager-service';
 import {Router} from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-employee',
@@ -23,7 +24,7 @@ export class AddEmployeeComponent implements OnInit {
     DOJ: new FormControl(null , [Validators.required]),
   });
   skills: string[] = [];
-  constructor(private managerService: ManagerService , private route: Router) {}
+  constructor(public snackBar:MatSnackBar,private managerService: ManagerService , private route: Router) {}
 
   ngOnInit(): void {
   }
@@ -46,9 +47,14 @@ export class AddEmployeeComponent implements OnInit {
     };
     this.managerService.addUser(data).subscribe((res) => {
       this.route.navigateByUrl('manager');
+      this.openSnackBar('Employee Added', 'close')
     });
   }
-
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+       duration: 2000,
+    });
+ } 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;

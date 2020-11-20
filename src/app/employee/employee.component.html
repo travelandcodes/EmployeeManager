@@ -5,6 +5,8 @@
       <p>Name :  {{employee.name}}</p>
       <p>Designation : {{employee.designation}}</p>
       <p>Salary : ₹{{employee.salary}}</p>
+      <p *ngIf="employee.isManager">Manager: YES</p>
+      <p *ngIf="!employee.isManager">Manager: NO</p>
       <p>Date of joining : {{employee.DOJ  |  date:'dd/MM/yyyy'}}</p>
       <p>Skills : <span *ngFor="let skill of employee.skills">{{skill}} -  </span></p>
     </div>
