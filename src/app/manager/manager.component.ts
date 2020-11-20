@@ -4,6 +4,8 @@ import {Options} from 'ng5-slider';
 import {FormControl} from '@angular/forms';
 import {ManagerService} from '../services/manager-service';
 import {Router} from '@angular/router';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-manager',
@@ -13,11 +15,13 @@ import {Router} from '@angular/router';
 export class ManagerComponent implements OnInit {
   autoComplete = new FormControl();
   employeesList: Employee[] = [];
-  constructor(private managerService: ManagerService , private router: Router) { }
-
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  autoComplete2=new FormControl();
+  user:Employee;
   minValue = 0;
-  skills:string[];
+  skills:string[]=[];
   designation:string;
+  
   maxValue = 500000;
   options: Options = {
     floor: 0,
@@ -25,6 +29,9 @@ export class ManagerComponent implements OnInit {
     step: 50000
   };
   keyword = '';
+  constructor(private managerService: ManagerService , private router: Router) { }
+
+  
   filter(): void {
     this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
       this.employeesList = res.users;
@@ -38,9 +45,15 @@ export class ManagerComponent implements OnInit {
         this.employeesList = res.users;
       });
     });
+    this.autoComplete2.valueChanges.subscribe(value=>{
+      this.designation=value;
+      
+    })
     this.managerService.getAllEmployees().subscribe((res) => {
       this.employeesList = res.users;
+      console.log(res);
     });
+    this.user = JSON.parse(localStorage.getItem('Employee_Manager'));
   }
   viewButtonClicked(id: string): void {
     console.log('view' + id);
@@ -60,4 +73,30 @@ export class ManagerComponent implements OnInit {
     });
   }
 
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+   console.log(value);
+    // Add our fruit
+    if (value.trim()) {
+      this.skills.push(value.trim());
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  remove(skill: string): void {
+    const index = this.skills.indexOf(skill);
+    if (index >= 0) {
+      this.skills.splice(index, 1);
+    }
+  }
+
+  applyFilter():void
+  {
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
+      this.employeesList = res.users;
+    });
+  }
 }
