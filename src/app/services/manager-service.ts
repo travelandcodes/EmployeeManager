@@ -19,9 +19,11 @@ export class ManagerService {
   deleteEmployee(id: string): any {
     return this.http.post(this.baseurl + 'delete-user' , {userId: id});
   }
-  getFilteredEmployees(min: number , max: number , keyWord: string): any {
+  getFilteredEmployees(min: number , max: number , keyWord: string, designation:string,skillSearch:string[]): any {
     return this.http.post(this.baseurl + 'findMany' ,
-       { minSalary: min.toString(),maxSalary: max.toString(),keyword: keyWord
+       { minSalary: min.toString(),maxSalary: max.toString(),keyword: keyWord,
+        skillSearch:skillSearch,
+        designation:designation
                       });
   }
 }

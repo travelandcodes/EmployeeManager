@@ -16,6 +16,8 @@ export class ManagerComponent implements OnInit {
   constructor(private managerService: ManagerService , private router: Router) { }
 
   minValue = 0;
+  skills:string[];
+  designation:string;
   maxValue = 500000;
   options: Options = {
     floor: 0,
@@ -24,7 +26,7 @@ export class ManagerComponent implements OnInit {
   };
   keyword = '';
   filter(): void {
-    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
       this.employeesList = res.users;
     });
   }
@@ -32,7 +34,7 @@ export class ManagerComponent implements OnInit {
   ngOnInit(): void {
     this.autoComplete.valueChanges.subscribe((value) => {
       this.keyword = value;
-      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
         this.employeesList = res.users;
       });
     });
@@ -52,7 +54,7 @@ export class ManagerComponent implements OnInit {
     console.log('delete' + id);
     this.managerService.deleteEmployee(id).subscribe(() => {
       console.log('User Deleted');
-      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
         this.employeesList = res.users;
       });
     });

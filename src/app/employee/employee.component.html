@@ -24,8 +24,33 @@
                matInput
                [formControl]="autoComplete" autocomplete="off">
       </mat-form-field>
-      <ng5-slider class="filter-component" (valueChange)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+      <ng5-slider *ngIf="employee.isManager" class="filter-component" (valueChange)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+      <mat-form-field class="filter-component">
+        <input type="text"
+               placeholder="Search by designation"
+               aria-label="Number"
+               matInput
+               [formControl]="autoComplete2" autocomplete="off">
+      </mat-form-field>
+     
+     
     </div>
+    <div style="display: block; margin-left: 102px;">
+      <mat-form-field>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let skill of skills" (removed)="remove(skill)">
+            {{skill}} <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="add($event)"
+                 placeholder="Skills">
+        </mat-chip-list>
+        <mat-error>At least one skill is required</mat-error>
+      </mat-form-field>
+    </div>
+    <button style="float: right; margin-top: 15px;margin-right: 10px;" mat-raised-button color="accent" (click)="applyFilter()">Filter<mat-icon style="line-height: 21px;margin-left: 10px;">filter_alt</mat-icon></button>
+
   </mat-card>
 </mat-card>
 <mat-card>

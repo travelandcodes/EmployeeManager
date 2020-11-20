@@ -5,6 +5,8 @@ import {EmployeeService} from '../services/employee-service';
 import { ManagerService } from '../services/manager-service';
 import { Options } from 'ng5-slider';
 import { FormControl } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-employee',
@@ -14,8 +16,12 @@ import { FormControl } from '@angular/forms';
 export class EmployeeComponent implements OnInit {
   employee: Employee;
   autoComplete = new FormControl();
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  autoComplete2=new FormControl();
   employeesList: Employee[] = [];
   user:Employee;
+  designation:string;
+  skills:string[]=[];
   employeeId: string;
   minValue = 0;
   maxValue = 500000;
@@ -26,7 +32,7 @@ export class EmployeeComponent implements OnInit {
   };
   keyword = '';
   filter(): void {
-    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
       this.employeesList = res.users;
     });
   }
@@ -35,9 +41,9 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.autoComplete.valueChanges.subscribe((value) => {
       this.keyword = value;
-      this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
-        this.employeesList = res.users;
-      });
+      // this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
+      //   this.employeesList = res.users;
+      // });
       
     });
     this.managerService.getAllEmployees().subscribe((res) => {
@@ -48,7 +54,11 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployeeById(this.employeeId).subscribe((res) => {
       this.employee = res.user;
     });
-    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword).subscribe((res) => {
+    this.autoComplete2.valueChanges.subscribe(value=>{
+      this.designation=value;
+      
+    })
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
       this.employeesList = res.users;
       console.log(this.employeesList);
     });
@@ -61,4 +71,31 @@ export class EmployeeComponent implements OnInit {
     this.route.navigateByUrl('update-employee/' + this.employee._id);
   }
 
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+   
+    // Add our fruit
+    if (value.trim()) {
+      this.skills.push(value.trim());
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+  remove(skill: string): void {
+    const index = this.skills.indexOf(skill);
+    if (index >= 0) {
+      this.skills.splice(index, 1);
+    }
+  }
+
+  applyFilter():void
+  {
+    this.managerService.getFilteredEmployees(this.minValue , this.maxValue , this.keyword,this.designation,this.skills).subscribe((res) => {
+      this.employeesList = res.users;
+    });
+  }
 }
+

@@ -66,8 +66,10 @@ export class AppModule {}
 export interface Employee {
   _id: string;
   name: string;
+  email:string;
   designation: string;
   salary: number;
   DOJ: Date;
+  isManager:boolean;
   skills: string[];
 }
