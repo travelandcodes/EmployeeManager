@@ -22,6 +22,7 @@ export class EmployeeUpdateComponent implements OnInit {
   formData = new FormGroup({
     name: new FormControl(null , [Validators.required]),
     email: new FormControl(null , [Validators.email, Validators.required]),
+    password:new FormControl(this.password_generator(8),[Validators.required]),
     isManager: new FormControl(null , [Validators.required]),
     designation: new FormControl(null , [Validators.required]),
     salary: new FormControl(null , [Validators.required , Validators.pattern(/^\d+$/)]),
@@ -36,6 +37,7 @@ export class EmployeeUpdateComponent implements OnInit {
       this.formData.setValue({
         name: this.initalState.name,
         email: this.initalState.email,
+        password:null,
         isManager: this.initalState.isManager.toString(),
         designation: this.initalState.designation,
         salary: this.initalState.salary,
@@ -43,6 +45,28 @@ export class EmployeeUpdateComponent implements OnInit {
       this.skills = this.initalState.skills;
     });
   }
+  password_generator( len ) {
+    var length = (len)?(len):(10);
+    var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
+    var numeric = '0123456789';
+    var punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+    var password = "";
+    var character = "";
+    var crunch = true;
+    while( password.length<length ) {
+       let entity1 = Math.ceil(string.length * Math.random()*Math.random());
+        let entity2 = Math.ceil(numeric.length * Math.random()*Math.random());
+        let entity3 = Math.ceil(punctuation.length * Math.random()*Math.random());
+        let hold = string.charAt( entity1 );
+        hold = (password.length%2==0)?(hold.toUpperCase()):(hold);
+        character += hold;
+        character += numeric.charAt( entity2 );
+        character += punctuation.charAt( entity3 );
+        password = character;
+    }
+    password=password.split('').sort(function(){return 0.5-Math.random()}).join('');
+    return password.substr(0,len);
+}
   onSubmit(): void {
     let data: AddEmployee;
     if (this.formData.value.isManager === 'true') {
